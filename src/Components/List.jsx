@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function List() {
+export default function List({item}) {
     return (
         <div className="List">
-            <p className="listDesc">Lorem ipsum dolor sit amet.</p>
+            <p className="listDesc">{item.desc}</p>
             <div className="listActins">
                 <div class="checkbox-wrapper-13">
                     <input type="checkbox" id="c1-13" />
