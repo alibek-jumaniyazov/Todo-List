@@ -182,7 +182,12 @@ body {
     align-items: center;
     gap: 20px;
 }
-
+.fa-check{
+    cursor: pointer;
+    color: rgb(3, 154, 3);
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
 .fa-pen {
     cursor: pointer;
     color: rgb(216, 168, 9);
@@ -214,5 +219,17 @@ i:active {
     overflow-y: scroll;
 }
 ::-webkit-scrollbar{
+    display: none;
+}
+
+.listDescCheck{
+    text-decoration: line-through;
+    color: var(--redColor);
+    font-weight: 500;
+}
+.listDescInput{
+    
+}
+.none{
     display: none;
 }

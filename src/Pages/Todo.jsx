@@ -9,8 +9,8 @@ export default function Todo() {
 
   return (
     <div className='Todo'>
-        <CreateList setTodo={setTodo} todo={todo}/>
-        <Lists todo={todo}/>
+        <CreateList setTodo={setTodo} />
+        <Lists setTodo={setTodo} todo={todo}/>
     </div>
   )
 }
