@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function FilterButtons() {
+export default function FilterButtons({ setTodoFilter }) {
   return (
     <div className='FilterButtons'>
-        <button>All</button>
-        <button>Done</button>
-        <button>Toto</button>
+      <button onClick={() => setTodoFilter(null)}>All</button>
+      <button onClick={() => setTodoFilter(true)}>Done</button>
+      <button onClick={() => setTodoFilter(false)}>Todo</button>
     </div>
-  )
+  );
 }

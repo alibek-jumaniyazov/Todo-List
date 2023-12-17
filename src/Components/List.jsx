@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export default function List({ item, setTodo, todo }) {
 
     const [editList, setEditList] = useState(item.desc)
-
+    const [checkedInput , setChecked] = useState(false)
     const [desc, setDesc] = useState(
         {
             text: 'listDesc',
@@ -47,24 +47,30 @@ export default function List({ item, setTodo, todo }) {
     }
 
     function clickCheck() {
-        setDesc((value) =>
-        value.map((valueItem) =>
-            item.check === false, {
-            text: 'listDesc',
-            ...valueItem
-        }))
-    setDesc((value) =>
-        value.map((valueItem) =>
-        valueItem.check == true, {
-            text: 'listDesc',
-            ...valueItem
-        }))
+        if (item.check === false) {
+            setDesc({
+                text: 'listDescCheck',
+                input: 'none',
+                icon1: 'none',
+                icon2: 'fa-pen'
+            })
+            setChecked(true)
+        }
+        if (item.check === true) {
+            setDesc({
+                text: 'listDesc',
+                input: 'none',
+                icon1: 'none',
+                icon2: 'fa-pen'
+            })
+            setChecked(false)
+        }
+        setTodo((value) =>
+            value.map((valueItem) =>
+                valueItem.id === item.id ? { ...valueItem, check: !item.check } : valueItem
+            )
+        );
 
-    setTodo((value) =>
-        value.map((valueItem) =>
-            valueItem.id === item.id ? { ...valueItem, check: !item.check } : valueItem
-        )
-    );
     }
 
     return (
@@ -72,8 +78,8 @@ export default function List({ item, setTodo, todo }) {
             <p className={desc.text} >{item.desc}</p>
             <input type="text" className={desc.input} value={editList} onChange={(e) => setEditList(e.target.value)} />
             <div className="listActins">
-                <div className="checkbox-wrapper-13" onClick={() => clickCheck()}>
-                    <input type="checkbox" id="c1-13" />
+                <div className="checkbox-wrapper-13">
+                    <input type="checkbox" checked={checkedInput} onClick={() => clickCheck()}/>
                 </div>
                 <i className={`fa-solid ${desc.icon1}`} onClick={() => updateList()}></i>
                 <i className={`fa-solid ${desc.icon2}`} onClick={() => putList()}></i>
