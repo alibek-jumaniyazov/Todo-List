@@ -46,23 +46,25 @@ export default function List({ item, setTodo, todo }) {
         }
     }
 
-    function clickCheck(){
-        if(desc.text == "listDesc"){
-            setDesc({
-                text: 'listDescCheck',
-                input: 'none',
-                icon1: 'none',
-                icon2: 'fa-pen'
-            })
-        }
-        if(desc.text == "listDescCheck"){
-            setDesc({
-                text: 'listDesc',
-                input: 'none',
-                icon1: 'none',
-                icon2: 'fa-pen'
-            })
-        }
+    function clickCheck() {
+        setDesc((value) =>
+        value.map((valueItem) =>
+            item.check === false, {
+            text: 'listDesc',
+            ...valueItem
+        }))
+    setDesc((value) =>
+        value.map((valueItem) =>
+        valueItem.check == true, {
+            text: 'listDesc',
+            ...valueItem
+        }))
+
+    setTodo((value) =>
+        value.map((valueItem) =>
+            valueItem.id === item.id ? { ...valueItem, check: !item.check } : valueItem
+        )
+    );
     }
 
     return (

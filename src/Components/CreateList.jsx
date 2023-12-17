@@ -12,7 +12,7 @@ export default function CreateList({ setTodo }) {
         }
         if (list.trim() !== '') {
             setCount(count + 1)
-            setTodo(value => [...value, { id: count, desc: list }])
+            setTodo(value => [...value, { id: count, desc: list , check:false }])
             setList('')
         }
     }
