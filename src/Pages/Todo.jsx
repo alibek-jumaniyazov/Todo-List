@@ -6,6 +6,7 @@ export default function Todo() {
 
     const [todo , setTodo] = useState([])
     console.log(todo);
+    console.log(todo.length);
 
   return (
     <div className='Todo'>

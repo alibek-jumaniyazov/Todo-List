@@ -6,13 +6,17 @@ export default function CreateList({ setTodo }) {
     const [list, setList] = useState('')
     const [count, setCount] = useState(0)
 
+    function generateID(){
+        return todos[todos.length - 1].id + 1
+    }
+
     function addNewList() {
         if (list.trim() === '') {
             alert("Bosh maydonni to'ldiring")
         }
         if (list.trim() !== '') {
             setCount(count + 1)
-            setTodo(value => [...value, { id: count, desc: list , check:false }])
+            setTodo(value => [...value, { id: generateID, desc: list , check:false }])
             setList('')
         }
     }

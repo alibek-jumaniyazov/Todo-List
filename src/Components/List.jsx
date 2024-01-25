@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 
 export default function List({ item, setTodo, todo }) {
 
+    const descInitialValue = {
+        text: 'listDesc',
+        input: 'none',
+        icon1: 'none',
+        icon2: 'fa-pen'
+    }
+
     const [editList, setEditList] = useState(item.desc)
     const [checkedInput , setChecked] = useState(false)
-    const [desc, setDesc] = useState(
-        {
-            text: 'listDesc',
-            input: 'none',
-            icon1: 'none',
-            icon2: 'fa-pen'
-        }
-    )
+    const [desc, setDesc] = useState(descInitialValue)
 
     function removeList() {
         const newTodo = todo.filter((i) => i.id !== item.id)
@@ -37,32 +37,20 @@ export default function List({ item, setTodo, todo }) {
             const itemIndex = updatedTodo.findIndex((i) => i.id === item.id);
             updatedTodo[itemIndex] = updatedItem;
             setTodo(updatedTodo);
-            setDesc({
-                text: 'listDesc',
-                input: 'none',
-                icon1: 'none',
-                icon2: 'fa-pen'
-            })
+            setDesc(descInitialValue)
         }
     }
 
     function clickCheck() {
         if (item.check === false) {
             setDesc({
+                ...desc,
                 text: 'listDescCheck',
-                input: 'none',
-                icon1: 'none',
-                icon2: 'fa-pen'
             })
             setChecked(true)
         }
         if (item.check === true) {
-            setDesc({
-                text: 'listDesc',
-                input: 'none',
-                icon1: 'none',
-                icon2: 'fa-pen'
-            })
+            setDesc(descInitialValue)
             setChecked(false)
         }
         setTodo((value) =>
@@ -81,10 +69,11 @@ export default function List({ item, setTodo, todo }) {
                 <div className="checkbox-wrapper-13">
                     <input type="checkbox" checked={checkedInput} onClick={() => clickCheck()}/>
                 </div>
-                <i className={`fa-solid ${desc.icon1}`} onClick={() => updateList()}></i>
+                <i className={`fa-solid ${desc.icon1}`} onClick={updateList}></i>
                 <i className={`fa-solid ${desc.icon2}`} onClick={() => putList()}></i>
                 <i className="fa-solid fa-trash" onClick={() => removeList()}></i>
             </div>
         </div>
     )
 }
+
